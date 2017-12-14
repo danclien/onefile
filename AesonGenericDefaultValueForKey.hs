@@ -20,7 +20,7 @@ Generic derivation.
 -}
 
 import Data.Aeson
-import Data.ByteString.Lazy (ByteString)
+import Data.ByteString.Lazy.Char8 (ByteString, unpack)
 import Data.Hashable
 import Data.HashMap.Lazy
 import GHC.Generics
@@ -35,7 +35,7 @@ data Person = Person
 instance FromJSON Person where
   parseJSON = genericParseJSON defaultOptions . setDefaultAge
     where
-      -- 'setDefaultAge' modifies the underlaying 'HashMap' to set the default value
+      -- 'setDefaultAge' modifies the underlying 'HashMap' to set the default value
       setDefaultAge (Object hashmap) = (Object $ insertDefault "age" (Number 42) hashmap) 
       setDefaultAge value = value
 
@@ -62,7 +62,7 @@ main = do
 
 printInputOutput :: Show a => ByteString -> a -> IO ()
 printInputOutput input output = do
-  putStrLn $ "Input: " ++ (read . show $ input)
+  putStrLn $ "Input: " ++ (unpack input)
   putStr "Output: "
   print output
   putStrLn ""
