@@ -7,6 +7,12 @@
 Check to see if prometheus-effect-1.1.0 correctly counts
 all 'incCounter' calls under high load
 
+Spoiler: It doesn't.
+
+I couldn't get prometheus-effect to work with the Stack
+script interpreter correctly so this gets a whole Stack
+project. ¯\_(ツ)_/¯
+
 -}
 
 module Main where
