@@ -9,3 +9,18 @@ Set the user/group when creating the container:
 ```
 docker run ... --user $(id -u):$(id -g) ...
 ```
+
+## Use `--mount` instead of `-v`/`--volume`
+
+From: https://docs.docker.com/engine/admin/volumes/bind-mounts/#choosing-the--v-or-mount-flag
+
+Example:
+```
+docker run -d \
+  -it \
+  --name devtest \
+  --mount type=bind,source="$(pwd)"/target,target=/app \
+  nginx:latest
+```
+
+
